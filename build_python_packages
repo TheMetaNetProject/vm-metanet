@@ -1,0 +1,25 @@
+#!/bin/bash
+#
+# install python packages
+cd /u/metanet/tools/virtualenv/2.7.3
+pip install -I ujson==1.33 || echo "FAILED: rc=$? pip ujson" >&2
+pip install -I bunch==1.0.1 || echo "FAILED: rc=$? pip bunch" >&2
+pip install -I distribute==0.7.3 || echo "FAILED: rc=$? pip distribute" >&2
+pip install -I easydict==1.4 || echo "FAILED: rc=$? pip easydict" >&2
+pip install -I numpy==1.7.1 || echo "FAILED: rc=$? pip numpy" >&2
+pip install -I isodate==0.4.9 || echo "FAILED: rc=$? pip isodate " >&2
+pip install -I jsonschema==1.2.0 || echo "FAILED: rc=$? pip jsonschema" >&2
+pip install -I nltk==2.0.4 || echo "FAILED: rc=$? pip nltk" >&2
+pip install -I openpyxl==1.6.2 || echo "FAILED: rc=$? pip openpyxl" >&2
+pip install -I peewee==2.1.4 || echo "FAILED: rc=$? pip peewee" >&2
+pip install -I PyLD==0.4.9 || echo "FAILED: rc=$? pip PyLD" >&2
+pip install -I pyparsing==1.5.6 || echo "FAILED: rc=$? pip pyparsing" >&2
+pip install -I python_cjson==1.0.5 || echo "FAILED: rc=$? pip python_cjson" >&2
+pip install -I rdflib==4.0.1 || echo "FAILED: rc=$? pip rdflib" >&2
+pip install -I rdflib_sparql==0.2 || echo "FAILED: rc=$? pip rdflib_sparql" >&2
+pip install -I six==1.3.0 || echo "FAILED: rc=$? pip six" >&2
+pip install -I MySQL_python || echo "FAILED: rc=$? pip MySQL_python" >&2
+# loops; recursion error probably due to distribute package mismatch
+#pip install -I MySQL_python==1.2.4 || echo "FAILED: rc=$? pip MySQL_python" >&2
+pip install nose || echo "FAILED: rc=$? nose" >&2
+pip install -I sparrow==1.0b4 || echo "FAILED: rc=$? sparrow" >&2

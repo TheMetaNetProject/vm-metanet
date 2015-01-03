@@ -1,0 +1,63 @@
+#!/bin/bash
+# build metanet environment 
+# Steve Doubleday
+# 
+# profile
+# reconcile differences:  metanet.bashrc 
+mv -f .bashrc /home/metanet/.bashrc || echo "FAILED: rc=$? mv .bashrc " >&2
+mkdir /u/metanet/etc
+#mv -f metanet.bashrc.old /u/metanet/etc/metanet.bashrc || echo "FAILED: rc=$? mv .bashrc " >&2
+rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/etc/metanet.bashrc  /u/metanet/etc || echo "FAILED: rc=$? rsync metanet.rsync" >&2
+source ~/.bashrc
+#
+# directories for logging and test
+NOW=$(date +"%Y-%m-%d--%H-%M")
+cd /home/metanet
+mkdir log-$NOW 
+mkdir test-$NOW
+#
+# install BLAS
+build_blas
+export BLAS=/u/metanet/tools/src/BLAS/libfblas.a
+#
+# install lapack 
+build_lapack
+export LAPACK=/u/metanet/tools/src/lapack-3.5.0/liblapack.a
+#
+# install lxml2 (needed for lxml)
+build_lxml2
+#
+# install lxslt (needed for lxml)
+build_lxslt
+#
+# install python packages
+build_python_packages
+#
+# install scipy (needs BLAS, lapack and numpy)
+build_scipy
+#
+# install freeling
+build_freeling
+#
+# finished building programs...
+# note:  error checking depends on hard-coded error filename
+#
+echo "Finished building programs." >&2
+ANY_ERROR=$(grep 'FAILED:' /home/metanet/bin/build_err.txt | wc -l)
+#
+# ...copy over needed data
+cd ~/bin
+load_data 2> data_err.txt > data_out.txt
+#
+# if no errors, continue with tests
+  if [ $ANY_ERROR -ne 0 ]
+    then
+      echo "Errors encountered; exiting before tests." >&2
+      log_output log-$NOW
+      exit 1
+  fi
+# ...tests
+run_tests test-$NOW 2> test_err.txt > test_out.txt
+#
+log_output log-$NOW
+exit 0

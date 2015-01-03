@@ -1,0 +1,14 @@
+#!/bin/bash
+#
+# run the tests 
+# $1:  test-yy-mm-dd--hh-ss directory name to store results in 
+cd ~/$1
+rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/n/banquet/dc/sjdayday/vm-metanet/tests/previous-tests ~/$1
+mkdir tests
+mkdir diff
+cd tests
+goldtests.sh
+diffall.sh $1
+# delete old enries `
+rsync -rltqzhe ssh ~/$1/tests/ sjdayday@mirto1.icsi.berkeley.edu:/n/banquet/dc/sjdayday/vm-metanet/tests/previous-tests
+rsync -rltqzhe ssh ~/$1 sjdayday@mirto1.icsi.berkeley.edu:/n/banquet/dc/sjdayday/vm-metanet/tests

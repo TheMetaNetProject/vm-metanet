@@ -1,0 +1,10 @@
+#!/bin/bash
+#
+# install lxml2 (needed for lxml)
+wget -O /u/metanet/tools/src/libxml2-2.9.1.tar.gz ftp://xmlsoft.org/libxml2/libxml2-2.9.1.tar.gz ||  echo "FAILED: rc=$? lxml2 wget" >&2
+cd /u/metanet/tools/src/
+tar xf libxml2-2.9.1.tar.gz
+cd /u/metanet/tools/src/libxml2-2.9.1/
+./configure --prefix=/u/metanet/tools || echo "FAILED: rc=$? lxml2 configure" >&2
+make || echo "FAILED: rc=$? lxml2 make" >&2
+make install || echo "FAILED: rc=$? lxml2 make install" >&2

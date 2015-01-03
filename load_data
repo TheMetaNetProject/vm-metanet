@@ -1,0 +1,79 @@
+#!/bin/bash
+#
+# load data
+# use -rlt instead of -a to avoid permissions problems
+cd /u/metanet
+mkdir dev
+# dev is a link, so copy its contents
+echo "affectRatings"
+rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/dev/  /u/metanet/dev || echo "FAILED: rc=$? rsync dev" >&2
+rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/affectRatings /u/metanet || echo "FAILED: rc=$? rsync affectRatings" >&2
+echo "clustering"
+cd /u/metanet
+mkdir clustering
+cd clustering
+mkdir m4source
+cd m4source
+rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/clustering/m4source/master_dim_list_new.csv /u/metanet/clustering/m4source/ || echo "FAILED: rc=$? rsync list_new" >&2
+rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/clustering/m4source/lexicon_english.txt /u/metanet/clustering/m4source/ || echo "FAILED: rc=$? rsync EN lexicon" >&2
+rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/clustering/m4source/termtermmatrix_english.mat /u/metanet/clustering/m4source/ || echo "FAILED: rc=$? rsync EN matrix" >&2
+rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/clustering/m4source/dictionary_spanish.dict /u/metanet/clustering/m4source/ || echo "FAILED: rc=$? rsync ES dict" >&2
+rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/clustering/m4source/modelspanish.lsi /u/metanet/clustering/m4source/ || echo "FAILED: rc=$? rsync ES model" >&2
+rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/clustering/m4source/dictionary_russian.dict /u/metanet/clustering/m4source/ || echo "FAILED: rc=$? rsync RU dict" >&2
+rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/clustering/m4source/modelrussian.lsi /u/metanet/clustering/m4source/ || echo "FAILED: rc=$? rsync RU model" >&2
+cd /u/metanet
+mkdir corpolexica
+cd corpolexica
+mkdir EN
+mkdir ES
+mkdir RU
+mkdir FA
+echo "EN bnc"
+rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/corpolexica/EN/bnc /u/metanet/corpolexica/EN || echo "FAILED: rc=$? rsync EN bnc" >&2
+cd /u/metanet/corpolexica/ES
+mkdir freeling
+echo "ES relationsDB"
+rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/corpolexica/ES/freeling/relations.db /u/metanet/corpolexica/ES/freeling || echo "FAILED: rc=$? rsync ES relationsDB" >&2
+cd /u/metanet/corpolexica/RU
+mkdir malt
+echo "RU relationsDB"
+rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/corpolexica/RU/malt/relations.db /u/metanet/corpolexica/RU/malt || echo "FAILED: rc=$? rsync RU relationsDB" >&2
+rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/AssignMappings /u/metanet || echo "FAILED: rc=$? rsync assign mappings" >&2
+echo "corpolexica m4mappings"
+rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/corpolexica/EN/m4mapping /u/metanet/corpolexica/EN || echo "FAILED: rc=$? rsync EN m4mapping" >&2
+rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/corpolexica/ES/m4mapping /u/metanet/corpolexica/ES || echo "FAILED: rc=$? rsync ES m4mapping" >&2
+rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/corpolexica/RU/m4mapping /u/metanet/corpolexica/RU || echo "FAILED: rc=$? rsync RU m4mapping" >&2
+cd /u/metanet
+mkdir nlptools
+cd nlptools
+echo "nlptools"
+rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/nlptools/maltparser-1.7.2 /u/metanet/nlptools || echo "FAILED: rc=$? rsync maltparser1.7" >&2
+rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/nlptools/tree-tagger-3.2 /u/metanet/nlptools || echo "FAILED: rc=$? rsync tree-tagger" >&2
+cd /u/metanet/corpolexica/RU
+mkdir parsers
+cd parsers
+mkdir tools
+echo "RU parser"
+rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/corpolexica/RU/parsers/tools/parser /u/metanet/corpolexica/RU/parsers/tools || echo "FAILED: rc=$? rsync RU parser" >&2
+cd /u/metanet
+mkdir extraction 
+echo "extraction"
+rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/extraction/seeds /u/metanet/extraction || echo "FAILED: rc=$? rsync seeds" >&2
+rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/extraction/cxns /u/metanet/extraction || echo "FAILED: rc=$? rsync cxns" >&2
+rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/extraction/persian /u/metanet/extraction || echo "FAILED: rc=$? rsync persian" >&2
+# was 700M, now 4G
+echo "repository"
+rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/repository /u/metanet || echo "FAILED: rc=$? rsync repository" >&2
+# 10G
+echo "tools"
+rsync -rltqzhe ssh --exclude=virtualenv sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/tools/ /u/metanet/tools || echo "FAILED: rc=$? rsync tools" >&2
+cd /u/metanet
+mkdir IARPATesting
+echo "IARPATesting"
+rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/IARPATesting/gold /u/metanet/IARPATesting || echo "FAILED: rc=$? rsync gold" >&2
+cd /u/framenet
+mkdir lib
+echo "framenet"
+rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/framenet/lib/nltk_data /u/framenet/lib || echo "FAILED: rc=$? rsync nltk_data" >&2
+echo "data loaded"
+exit 0

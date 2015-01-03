@@ -1,0 +1,6 @@
+#!/bin/bash
+#
+# log the output files 
+rsync -rtqzh ~/build/*.txt ~/$1
+rsync -rtqzh /root/ ~/$1
+rsync -rltqzhe ssh ~/$1 sjdayday@mirto1.icsi.berkeley.edu:/n/banquet/dc/sjdayday/vm-metanet/logs
