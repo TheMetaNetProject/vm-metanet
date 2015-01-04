@@ -4,9 +4,10 @@
 # 
 # profile
 # reconcile differences:  metanet.bashrc 
-mv -f .bashrc /home/metanet/.bashrc || echo "FAILED: rc=$? mv .bashrc " >&2
+mv -f .bashrc /home/mnauto/.bashrc || echo "FAILED: rc=$? mv .bashrc " >&2
 mkdir /u/metanet/etc
 #mv -f metanet.bashrc.old /u/metanet/etc/metanet.bashrc || echo "FAILED: rc=$? mv .bashrc " >&2
+# >> replace with git clone
 rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/etc/metanet.bashrc  /u/metanet/etc || echo "FAILED: rc=$? rsync metanet.rsync" >&2
 source ~/.bashrc
 #
