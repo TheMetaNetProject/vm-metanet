@@ -2,7 +2,7 @@
 #
 # install python packages
 cd /u/metanet/tools64/virtualenv/2.7.3
-pip install -r -I /home/mnauto/bin/pip-packages || echo "FAILED: rc=$? pip-packages" >&2
+#pip install -r -I /home/mnauto/bin/pip-packages || echo "FAILED: rc=$? pip-packages" >&2
 #pip install -I ujson==1.33 || echo "FAILED: rc=$? pip ujson" >&2
 #pip install -I bunch==1.0.1 || echo "FAILED: rc=$? pip bunch" >&2
 #pip install -I distribute==0.7.3 || echo "FAILED: rc=$? pip distribute" >&2
@@ -22,5 +22,50 @@ pip install -r -I /home/mnauto/bin/pip-packages || echo "FAILED: rc=$? pip-packa
 #pip install -I MySQL_python || echo "FAILED: rc=$? pip MySQL_python" >&2
 # loops; recursion error probably due to distribute package mismatch
 #pip install -I MySQL_python==1.2.4 || echo "FAILED: rc=$? pip MySQL_python" >&2
-pip install nose || echo "FAILED: rc=$? nose" >&2
 #pip install -I sparrow==1.0b4 || echo "FAILED: rc=$? sparrow" >&2
+pip install -I CouchDB==1.0 || echo "FAILED: rc=$? pip CouchDB" >&2
+pip install -I Jinja2==2.7.2 || echo "FAILED: rc=$? pip Jinja2" >&2
+pip install -I MarkupSafe==0.18 || echo "FAILED: rc=$? pip MarkupSafe" >&2
+pip install -I MySQL-python==1.2.5 || echo "FAILED: rc=$? pip MySQL-python" >&2
+pip install -I PyYAML==3.11 || echo "FAILED: rc=$? pip PyYAML" >&2
+pip install -I Pygments==1.6 || echo "FAILED: rc=$? pip Pygments" >&2
+pip install -I SPARQLWrapper==1.6.0 || echo "FAILED: rc=$? pip SPARQLWrapper" >&2
+pip install -I Sphinx==1.2.1 || echo "FAILED: rc=$? pip Sphinx" >&2
+pip install -I XlsxWriter==0.5.3 || echo "FAILED: rc=$? pip XlsxWriter" >&2
+pip install -I backports.ssl-match-hostname==3.4.0.2 || echo "FAILED: rc=$? pip backports.ssl-match-hostname" >&2
+pip install -I beautifulsoup4==4.3.2 || echo "FAILED: rc=$? pip beautifulsoup4" >&2
+pip install -I bunch==1.0.1 || echo "FAILED: rc=$? pip bunch" >&2
+pip install -I certifi==14.05.14 || echo "FAILED: rc=$? pip certifi" >&2
+pip install -I couchdbkit==0.6.5 || echo "FAILED: rc=$? pip couchdbkit" >&2
+pip install -I docutils==0.11 || echo "FAILED: rc=$? pip docutils" >&2
+#pip install -I gensim==0.8.9 || echo "FAILED: rc=$? pip gensim" >&2
+pip install -I html5lib==0.95 || echo "FAILED: rc=$? pip html5lib" >&2
+pip install -I http-parser==0.8.3 || echo "FAILED: rc=$? pip http-parser" >&2
+pip install -I httplib2==0.8 || echo "FAILED: rc=$? pip httplib2" >&2
+pip install -I ipython==2.3.1 || echo "FAILED: rc=$? pip ipython" >&2
+pip install -I isodate==0.4.9 || echo "FAILED: rc=$? pip isodate" >&2
+pip install -I javalang==0.9.5 || echo "FAILED: rc=$? pip javalang" >&2
+pip install -I javasphinx==0.9.10 || echo "FAILED: rc=$? pip javasphinx" >&2
+pip install -I jdatetime==1.3 || echo "FAILED: rc=$? pip jdatetime" >&2
+pip install -I jsonschema==2.3.0 || echo "FAILED: rc=$? pip jsonschema" >&2
+pip install -I lxml==3.3.0 || echo "FAILED: rc=$? pip lxml" >&2
+pip install -I nltk==3.0.0b2 || echo "FAILED: rc=$? pip nltk" >&2
+pip install -I numpy==1.8.0 || echo "FAILED: rc=$? pip numpy" >&2
+pip install -I openpyxl==1.8.4 || echo "FAILED: rc=$? pip openpyxl" >&2
+pip install -I pymongo==2.7.2 || echo "FAILED: rc=$? pip pymongo" >&2
+pip install -I pyparsing==2.0.1 || echo "FAILED: rc=$? pip pyparsing" >&2
+pip install -I pyzmq==14.4.1 || echo "FAILED: rc=$? pip pyzmq" >&2
+pip install -I rdflib==4.1.0 || echo "FAILED: rc=$? pip rdflib" >&2
+pip install -I rdflib-jsonld==0.2-dev || echo "FAILED: rc=$? pip rdflib-jsonld" >&2
+pip install -I restkit==4.2.2 || echo "FAILED: rc=$? pip restkit" >&2
+#pip install -I scipy==0.13.2 || echo "FAILED: rc=$? pip scipy" >&2
+pip install -I setproctitle==1.1.8 || echo "FAILED: rc=$? pip setproctitle" >&2
+pip install -I simplejson==3.3.2 || echo "FAILED: rc=$? pip simplejson" >&2
+pip install -I socketpool==0.5.3 || echo "FAILED: rc=$? pip socketpool" >&2
+pip install -I tailer==0.3 || echo "FAILED: rc=$? pip tailer" >&2
+pip install -I tornado==4.0.2 || echo "FAILED: rc=$? pip tornado" >&2
+pip install -I ujson==1.33 || echo "FAILED: rc=$? pip ujson" >&2
+pip install -I unicodecsv==0.9.4 || echo "FAILED: rc=$? pip unicodecsv" >&2
+pip install -I wsgiref==0.1.2 || echo "FAILED: rc=$? pip wsgiref" >&2
+pip install -I zope.interface==4.1.0 || echo "FAILED: rc=$? pip zope.interface" >&2
+pip install nose || echo "FAILED: rc=$? nose" >&2
