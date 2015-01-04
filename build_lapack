@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # install lapack
-cd /u/metanet/tools/src
+cd /u/metanet/tools64/src
 wget http://www.netlib.org/lapack/lapack.tgz || echo "FAILED: rc=$? wget lapack" >&2
 tar -zxvf lapack.tgz
 cd lapack-3.5.0
@@ -10,4 +10,4 @@ perl -pi.bak -e 's/FORTRAN\s+=\s+gfortran/PLAT = _LINUX\nFORTRAN  = gfortran/' m
 perl -pi.bak -e 's/-frecursive/-m64 -fPIC/' make.inc
 make lapacklib || echo "FAILED: rc=$? make lapack " >&2
 make clean
-export LAPACK=/u/metanet/tools/src/lapack-3.5.0/liblapack.a
+export LAPACK=/u/metanet/tools64/src/lapack-3.5.0/liblapack.a

@@ -1,12 +1,12 @@
 #!/bin/bash
 #
 # install freeling
-rsync -avzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/tools/src/freeling-1666 /u/metanet/tools/src  ||  echo "FAILED: rc=$? freeling rsync" >&2
-cd /u/metanet/tools/src/freeling-1666/
+rsync -avzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/tools64/src/freeling-1666 /u/metanet/tools64/src  ||  echo "FAILED: rc=$? freeling rsync" >&2
+cd /u/metanet/tools64/src/freeling-1666/
 aclocal || echo "FAILED: rc=$? freeling aclocal" >&2
 libtoolize || echo "FAILED: rc=$? freeling libtoolize" >&2
 autoconf || echo "FAILED: rc=$? freeling autoconf" >&2
 automake -a || echo "FAILED: rc=$? freeling automake" >&2
-./configure --prefix=/u/metanet/tools || echo "FAILED: rc=$? feeling configure" >&2
+./configure --prefix=/u/metanet/tools64 || echo "FAILED: rc=$? feeling configure" >&2
 make || echo "FAILED: rc=$? freeling make" >&2
 make install || echo "FAILED: rc=$? freeling make install" >&2

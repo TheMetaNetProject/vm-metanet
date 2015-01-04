@@ -3,7 +3,7 @@
 #
 
 # no smart switching based on architecture yet
-TOOLSDIR=/u/metanet/tools
+TOOLSDIR=/u/metanet/tools64
 MNDEVDIR=/u/metanet/dev
 
 # assumes default tree location is ~/mdev
@@ -19,7 +19,7 @@ export TREETAGGER_HOME=/u/metanet/nlptools/tree-tagger-3.2
 export CATALINA_HOME=$TOOLSDIR/apache-tomcat-7.0.47
 
 # enable metanet default python settings
-source /u/metanet/tools/virtualenv/2.7.3/bin/activate
+source /u/metanet/tools64/virtualenv/2.7.3/bin/activate
 
 export PYTHONPATH=${MNDEVDIR}/lib/python:${PYTHONPATH}:/u/metanet/repository/pywikipedia
 export PROTEGE_HOME=${TOOLSDIR}/protege

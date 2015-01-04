@@ -1,8 +1,8 @@
 #!/bin/bash
 #
 # install python packages
-cd /u/metanet/tools/virtualenv/2.7.3
-pip install -r /home/metanet/bin/pip-packages || echo "FAILED: rc=$? pip-packages" >&2
+cd /u/metanet/tools64/virtualenv/2.7.3
+pip install -r -I /home/metanet/bin/pip-packages || echo "FAILED: rc=$? pip-packages" >&2
 #pip install -I ujson==1.33 || echo "FAILED: rc=$? pip ujson" >&2
 #pip install -I bunch==1.0.1 || echo "FAILED: rc=$? pip bunch" >&2
 #pip install -I distribute==0.7.3 || echo "FAILED: rc=$? pip distribute" >&2

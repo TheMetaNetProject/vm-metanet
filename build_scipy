@@ -1,10 +1,10 @@
 #!/bin/bash
 #
 # install scipy (needs BLAS, lapack and numpy), and gensim
-cd /u/metanet/tools/virtualenv/2.7.3/lib/python2.7/site-packages
+cd /u/metanet/tools64/virtualenv/2.7.3/lib/python2.7/site-packages
 wget http://sourceforge.net/projects/scipy/files/scipy/0.13.2/scipy-0.13.2.tar.gz || echo "FAILED: rc=$? wget scipy" >&2
 tar -zxvf scipy-0.13.2.tar.gz
 cd scipy-0.13.2
 python setup.py install || echo "FAILED: rc=$? install scipy" >&2
-pip install -I gensim==0.8.8 || echo "FAILED: rc=$? pip gensim" >&2
+pip install -I gensim==0.8.9 || echo "FAILED: rc=$? pip gensim" >&2
 

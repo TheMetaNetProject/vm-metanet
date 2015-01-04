@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # install BLAS
-cd /u/metanet/tools
+cd /u/metanet/tools64
 mkdir src
 cd src
 wget http://www.netlib.org/blas/blas.tgz || echo "FAILED: rc=$? wget blas" >&2
@@ -11,4 +11,4 @@ gfortran -O3 -std=legacy -m64 -fno-second-underscore -fPIC -c *.f || echo "FAILE
 ar r libfblas.a *.o
 ranlib libfblas.a
 rm -rf *.o
-export BLAS=/u/metanet/tools/src/BLAS/libfblas.a
+export BLAS=/u/metanet/tools64/src/BLAS/libfblas.a

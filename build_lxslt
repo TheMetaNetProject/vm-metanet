@@ -1,10 +1,10 @@
 #!/bin/bash
 #
 # install lxslt
-wget -O /u/metanet/tools/src/libxslt-1.1.28.tar.gz ftp://xmlsoft.org/libxml2/libxslt-1.1.28.tar.gz ||  echo "FAILED: rc=$? lxslt wget" >&2
-cd /u/metanet/tools/src/
+wget -O /u/metanet/tools64/src/libxslt-1.1.28.tar.gz ftp://xmlsoft.org/libxml2/libxslt-1.1.28.tar.gz ||  echo "FAILED: rc=$? lxslt wget" >&2
+cd /u/metanet/tools64/src/
 tar xf libxslt-1.1.28.tar.gz
-cd /u/metanet/tools/src/libxslt-1.1.28/
-./configure --prefix=/u/metanet/tools || echo "FAILED: rc=$? lxslt configure" >&2
+cd /u/metanet/tools64/src/libxslt-1.1.28/
+./configure --prefix=/u/metanet/tools64 || echo "FAILED: rc=$? lxslt configure" >&2
 make || echo "FAILED: rc=$? lxslt make" >&2
 make install || echo "FAILED: rc=$? lxslt make install" >&2

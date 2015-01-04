@@ -18,11 +18,11 @@ mkdir test-$NOW
 #
 # install BLAS
 build_blas
-export BLAS=/u/metanet/tools/src/BLAS/libfblas.a
+export BLAS=/u/metanet/tools64/src/BLAS/libfblas.a
 #
 # install lapack 
 build_lapack
-export LAPACK=/u/metanet/tools/src/lapack-3.5.0/liblapack.a
+export LAPACK=/u/metanet/tools64/src/lapack-3.5.0/liblapack.a
 #
 # install lxml2 (needed for lxml)
 build_lxml2
