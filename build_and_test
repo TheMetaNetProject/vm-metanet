@@ -13,7 +13,7 @@ source ~/.bashrc
 #
 # directories for logging and test
 NOW=$(date +"%Y-%m-%d--%H-%M")
-cd /home/metanet
+cd /home/mnauto
 mkdir log-$NOW 
 mkdir test-$NOW
 #
@@ -47,7 +47,7 @@ echo "Finished building programs." >&2
 ANY_ERROR=$(grep 'FAILED:' /home/metanet/bin/build_err.txt | wc -l)
 #
 # ...copy over needed data
-cd ~/bin
+cd ~/vmbin
 load_data 2> data_err.txt > data_out.txt
 #
 # if no errors, continue with tests
