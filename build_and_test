@@ -10,6 +10,7 @@ mkdir /u/metanet/etc
 # >> replace with git clone
 rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/etc/metanet.bashrc  /u/metanet/etc || echo "FAILED: rc=$? rsync metanet.rsync" >&2
 source ~/.bashrc
+export PATH=${PATH}:/home/mnauto/vmbin
 #
 # directories for logging and test
 NOW=$(date +"%Y-%m-%d--%H-%M")
