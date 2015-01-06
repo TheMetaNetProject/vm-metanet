@@ -2,7 +2,7 @@
 #
 # install freeling
 cd /u/metanet/tools64/src
-wget http://devel.cpl.upc.edu/freeling/downloads/32/freeling-3.1.tar.gz || echo "FAILED: rc=$? wget freeling" >&2
+wget http://devel.cpl.upc.edu/freeling/downloads/freeling-3.1.tar.gz || echo "FAILED: rc=$? wget freeling" >&2
 tar -zxvf freeling-3.1.tar.gz
 cd /u/metanet/tools64/src/freeling-3.1/
 aclocal || echo "FAILED: rc=$? freeling aclocal" >&2
