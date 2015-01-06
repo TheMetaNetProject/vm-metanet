@@ -5,10 +5,6 @@ cd /u/metanet/tools64/src
 wget http://devel.cpl.upc.edu/freeling/downloads/freeling-3.1.tar.gz || echo "FAILED: rc=$? wget freeling" >&2
 tar -zxvf freeling-3.1.tar.gz
 cd /u/metanet/tools64/src/freeling-3.1/
-aclocal || echo "FAILED: rc=$? freeling aclocal" >&2
-libtoolize || echo "FAILED: rc=$? freeling libtoolize" >&2
-autoconf || echo "FAILED: rc=$? freeling autoconf" >&2
-automake -a || echo "FAILED: rc=$? freeling automake" >&2
 ./configure --prefix=/u/metanet/tools64 || echo "FAILED: rc=$? feeling configure" >&2
 make || echo "FAILED: rc=$? freeling make" >&2
 make install || echo "FAILED: rc=$? freeling make install" >&2
