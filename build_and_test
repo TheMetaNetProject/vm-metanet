@@ -17,11 +17,11 @@ cd /home/mnauto
 mkdir log-$NOW 
 mkdir test-$NOW
 #
-# install BLAS
+# install BLAS; manual export needed for scipy
 build_blas
 export BLAS=/u/metanet/tools64/src/BLAS/libfblas.a
 #
-# install lapack 
+# install lapack; manual export needed for scipy
 build_lapack
 export LAPACK=/u/metanet/tools64/src/lapack-3.5.0/liblapack.a
 #
