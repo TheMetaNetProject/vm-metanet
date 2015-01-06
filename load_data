@@ -5,8 +5,10 @@
 cd /u/metanet
 mkdir dev
 # dev is a link, so copy its contents
-echo "affectRatings"
 rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/dev/  /u/metanet/dev || echo "FAILED: rc=$? rsync dev" >&2
+echo "tools"
+rsync -rltqzhe ssh --exclude=virtualenv sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/tools64/ /u/metanet/tools64 || echo "FAILED: rc=$? rsync tools" >&2
+echo "affectRatings"
 rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/affectRatings /u/metanet || echo "FAILED: rc=$? rsync affectRatings" >&2
 echo "clustering"
 cd /u/metanet
@@ -65,8 +67,6 @@ rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/extraction/persi
 echo "repository"
 rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/repository /u/metanet || echo "FAILED: rc=$? rsync repository" >&2
 # 10G
-echo "tools"
-rsync -rltqzhe ssh --exclude=virtualenv sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/tools64/ /u/metanet/tools64 || echo "FAILED: rc=$? rsync tools" >&2
 cd /u/metanet
 mkdir IARPATesting
 echo "IARPATesting"
