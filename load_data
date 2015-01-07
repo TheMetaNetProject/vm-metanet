@@ -2,6 +2,8 @@
 #
 # load data
 # use -rlt instead of -a to avoid permissions problems
+#  /u/metanet/git/rdfowl-files.git/
+# git clone ssh://sjdayday@mirto1.icsi.berkeley.edu/u/metanet/git/metanet-etc.git/
 cd /u/metanet
 mkdir dev
 # dev is a link, so copy its contents

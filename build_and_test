@@ -2,20 +2,14 @@
 # build metanet environment 
 # Steve Doubleday
 # 
-# profile
-# reconcile differences:  metanet.bashrc 
-#mv -f .bashrc /home/mnauto/.bashrc || echo "FAILED: rc=$? mv .bashrc " >&2
+export PATH=${PATH}:/home/mnauto/vmbin
+#
+# clone /u/metanet/etc and source metanet.bashrc
 mkdir /u/metanet/etc
-#mv -f metanet.bashrc.old /u/metanet/etc/metanet.bashrc || echo "FAILED: rc=$? mv .bashrc " >&2
-# >> replace with git clone
-# /u/metanet/git/rdfowl-files.git/
-# git clone ssh://sjdayday@mirto1.icsi.berkeley.edu/u/metanet/git/vm-metanet.git vmbin
 cd /u/metanet/etc
 git clone ssh://sjdayday@mirto1.icsi.berkeley.edu/u/metanet/git/metanet-etc.git/
-#rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/etc/metanet.bashrc  /u/metanet/etc || echo "FAILED: rc=$? rsync metanet.rsync" >&2
 echo "if [ -f /u/metanet/etc/metanet.bashrc ] ; then\n source /u/metanet/etc/metanet.bashrc\nfi" >> /home/mnauto/.bashrc
 source ~/.bashrc
-export PATH=${PATH}:/home/mnauto/vmbin
 #
 # directories for logging and test
 NOW=$(date +"%Y-%m-%d--%H-%M")
