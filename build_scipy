@@ -5,6 +5,11 @@ cd /u/metanet/tools64/virtualenv/2.7.3/lib/python2.7/site-packages
 wget http://sourceforge.net/projects/scipy/files/scipy/0.13.2/scipy-0.13.2.tar.gz || echo "FAILED: rc=$? wget scipy" >&2
 tar -zxvf scipy-0.13.2.tar.gz
 cd scipy-0.13.2
+# conflict with LDFLAGS, per https://bugs.archlinux.org/task/16833 
+export TEMPLDFLAGS=${LDFLAGS}
+unset LDFLAGS
 python setup.py install || echo "FAILED: rc=$? install scipy" >&2
+export LDFLAGS=${TEMPLDFLAGS}
+unset TEMPLDFLAGS
 pip install -I gensim==0.8.9 || echo "FAILED: rc=$? pip gensim" >&2
 

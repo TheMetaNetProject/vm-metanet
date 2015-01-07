@@ -50,7 +50,13 @@ pip install -I jdatetime==1.3 || echo "FAILED: rc=$? pip jdatetime" >&2
 pip install -I jsonschema==2.3.0 || echo "FAILED: rc=$? pip jsonschema" >&2
 pip install -I lxml==3.3.0 || echo "FAILED: rc=$? pip lxml" >&2
 pip install -I nltk==3.0.0b2 || echo "FAILED: rc=$? pip nltk" >&2
+# If LDFLAGS is set, get (.text+0x26): undefined reference to `MAIN__'
+#  https://bugs.archlinux.org/task/16833 
+export TEMPLDFLAGS=${LDFLAGS}
+unset LDFLAGS
 pip install -I numpy==1.8.0 || echo "FAILED: rc=$? pip numpy" >&2
+export LDFLAGS=${TEMPLDFLAGS}
+unset TEMPLDFLAGS
 pip install -I openpyxl==1.8.4 || echo "FAILED: rc=$? pip openpyxl" >&2
 pip install -I pymongo==2.7.2 || echo "FAILED: rc=$? pip pymongo" >&2
 pip install -I pyparsing==2.0.1 || echo "FAILED: rc=$? pip pyparsing" >&2
