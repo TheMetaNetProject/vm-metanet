@@ -46,6 +46,9 @@ build_scipy
 # install freeling
 build_freeling
 #
+# install ant
+build_ant
+#
 # finished building programs...
 # note:  error checking depends on hard-coded error filename
 #

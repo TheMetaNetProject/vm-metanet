@@ -1,0 +1,7 @@
+#!/bin/bash
+#
+# install ant 1.8.4
+# metanet.bashrc sets ANT_HOME
+cd /u/metanet/tools64
+wget http://archive.apache.org/dist/ant/binaries/apache-ant-1.8.4-bin.tar.gz || echo "FAILED: rc=$? wget ant" >&2
+tar -zxvf apache-ant-1.8.4-bin.tar.gz  || echo "FAILED: rc=$? untar ant" >&2
