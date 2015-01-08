@@ -43,6 +43,9 @@ build_freeling
 # install ant
 build_ant
 #
+# install tomcat
+build_tomcat
+#
 # finished building programs...
 # note:  error checking depends on hard-coded error filename
 #
