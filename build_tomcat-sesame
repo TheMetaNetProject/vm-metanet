@@ -1,0 +1,17 @@
+#!/bin/bash
+#
+# install tomcat 7.0.47 and sesame 2.7.8
+# rsync /u/metanet/sbin/ and update scripts appropriately
+# metanet.bashrc sets CATALINA_HOME
+echo "tomcat"
+cd /u/metanet/tools64
+wget http://archive.apache.org/dist/tomcat/tomcat-7/v7.0.47/bin/apache-tomcat-7.0.47.tar.gz || echo "FAILED: rc=$? wget tomcat" >&2
+tar -zxvf apache-tomcat-7.0.47  || echo "FAILED: rc=$? untar tomcat" >&2
+echo "sesame"
+wget http://sourceforge.net/projects/sesame/files/Sesame%202/2.7.8/openrdf-sesame-2.7.8-sdk.tar.gz || echo "FAILED: rc=$? wget sesame" >&2
+tar -zxvf openrdf-sesame-2.7.8-sdk  || echo "FAILED: rc=$? untar sesame" >&2
+echo "sbin"
+rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/sbin /u/metanet || echo "FAILED: rc=$? rsync sbin" >&2
+echo "update scripts"
+sed -i 's_\(^MNDATADIR=\).*_\1/u/metanet/data_' setupnewsesame.sh
+sed -i 's_\(^SESAMEDIR=\).*_\1/u/metanet/tools64/openrdf-sesame-2.7.8-sdk_' setupnewsesame.sh
