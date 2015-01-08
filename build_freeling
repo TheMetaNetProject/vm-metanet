@@ -1,8 +1,10 @@
 #!/bin/bash
 #
 # install freeling
-rsync -avzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/tools64/src/freeling-1666 /u/metanet/tools64/src  ||  echo "FAILED: rc=$? freeling rsync" >&2
-cd /u/metanet/tools64/src/freeling-1666/
+cd /u/metanet/tools64/src
+wget http://devel.cpl.upc.edu/freeling/downloads/32/freeling-3.1.tar.gz || echo "FAILED: rc=$? wget freeling" >&2
+tar -zxvf freeling-3.1.tar.gz
+cd /u/metanet/tools64/src/freeling-3.1/
 aclocal || echo "FAILED: rc=$? freeling aclocal" >&2
 libtoolize || echo "FAILED: rc=$? freeling libtoolize" >&2
 autoconf || echo "FAILED: rc=$? freeling autoconf" >&2
