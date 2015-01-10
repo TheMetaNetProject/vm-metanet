@@ -6,13 +6,34 @@
 echo "tomcat"
 cd /u/metanet/tools64
 wget http://archive.apache.org/dist/tomcat/tomcat-7/v7.0.47/bin/apache-tomcat-7.0.47.tar.gz || echo "FAILED: rc=$? wget tomcat" >&2
-tar -zxvf apache-tomcat-7.0.47  || echo "FAILED: rc=$? untar tomcat" >&2
+tar -zxvf apache-tomcat-7.0.47.tar.gz  || echo "FAILED: rc=$? untar tomcat" >&2
 echo "sesame"
 wget http://sourceforge.net/projects/sesame/files/Sesame%202/2.7.8/openrdf-sesame-2.7.8-sdk.tar.gz || echo "FAILED: rc=$? wget sesame" >&2
-tar -zxvf openrdf-sesame-2.7.8-sdk  || echo "FAILED: rc=$? untar sesame" >&2
+tar -zxvf openrdf-sesame-2.7.8-sdk.tar.gz  || echo "FAILED: rc=$? untar sesame" >&2
 echo "sbin"
 rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/sbin /u/metanet || echo "FAILED: rc=$? rsync sbin" >&2
 cd /u/metanet/sbin
-echo "update scripts"
+echo "update scripts for later use"
 sed -i 's_\(^MNDATADIR=\).*_\1/u/metanet/data_' setupnewsesame.sh || echo "FAILED: rc=$? update setupnewsesame1" >&2
-sed -i 's_\(^SESAMEDIR=\).*_\1/u/metanet/tools64/openrdf-sesame-2.7.8-sdk_' setupnewsesame.sh || echo "FAILED: rc=$? update setupnewsesame2" >&2
+sed -i 's_\(^SESAMEDIR=\).*_\1/u/metanet/tools64/openrdf-sesame-2.7.8_' setupnewsesame.sh || echo "FAILED: rc=$? update setupnewsesame2" >&2
+echo "manually set up sesame"
+cd /u/metanet/data
+mkdir apache-tomcat-7.0.47-localhost
+rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/n/picnic/xw/metanet/data/apache-tomcat-7.0.47-template/ /u/metanet/data/apache-tomcat-7.0.47-localhost || echo "FAILED: rc=$? rsync tomcat-template" >&2
+cd apache-tomcat-7.0.47-localhost/bin
+echo 'export JAVA_OPTS="-Xss1m -Xms256m -Xmx256m -Dinfo.aduna.platform.appdata.basedir=/tmp/metanet-openrdf -XX:+UseConcMarkSweepGC"' >> setenv.sh
+rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/n/picnic/xw/metanet/data/metanet-openrdf /tmp || echo "FAILED: rc=$? rsync tomcat-template" >&2
+echo "start tomcat first time..."
+cd $CATALINA_HOME/bin
+./startup.sh
+sleep 30
+cd /u/metanet
+mkdir repository
+cd repository
+git clone ssh://sjdayday@mirto1.icsi.berkeley.edu/u/metanet/git/rdfowl-files.git/ rdf || echo "FAILED: rc=$? git clone rdf" >&2
+cd rdf 
+echo "...to initialize sesame repositories"
+/u/metanet/tools64/openrdf-sesame-2.7.8/bin/console.sh -s http://localhost:8080/openrdf-sesame < create_repositories.txt
+sleep 30
+cd $CATALINA_HOME/bin
+./shutdown.sh
