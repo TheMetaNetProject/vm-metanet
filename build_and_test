@@ -9,7 +9,7 @@ mkdir /u/metanet/etc
 cd /u/metanet/etc
 git clone ssh://sjdayday@mirto1.icsi.berkeley.edu/u/metanet/git/metanet-etc.git/
 sed -i 's_/n/picnic/xw/metanet_/u/metanet_' metanet.bashrc
-echo "if [ -f /u/metanet/etc/metanet.bashrc ] ; then\n source /u/metanet/etc/metanet.bashrc\nfi" >> /home/mnauto/.bashrc
+/usr/bin/printf "\nif [ -f /u/metanet/etc/metanet.bashrc ] ; then\n source /u/metanet/etc/metanet.bashrc\nfi\n" >> /home/mnauto/.bashrc
 source ~/.bashrc
 #
 # directories for logging and test
