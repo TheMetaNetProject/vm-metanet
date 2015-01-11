@@ -21,6 +21,7 @@ cd /u/metanet/data
 mkdir apache-tomcat-7.0.47-localhost
 rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/n/picnic/xw/metanet/data/apache-tomcat-7.0.47-template/ /u/metanet/data/apache-tomcat-7.0.47-localhost || echo "FAILED: rc=$? rsync tomcat-template" >&2
 cd apache-tomcat-7.0.47-localhost/bin
+rm -f setenv.sh
 echo 'export JAVA_OPTS="-Xss1m -Xms256m -Xmx256m -Dinfo.aduna.platform.appdata.basedir=/tmp/metanet-openrdf -XX:+UseConcMarkSweepGC"' >> setenv.sh
 rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/n/picnic/xw/metanet/data/metanet-openrdf /tmp || echo "FAILED: rc=$? rsync tomcat-template" >&2
 echo "start tomcat first time..."
