@@ -62,7 +62,8 @@ pip install -I pymongo==2.7.2 || echo "FAILED: rc=$? pip pymongo" >&2
 pip install -I pyparsing==2.0.1 || echo "FAILED: rc=$? pip pyparsing" >&2
 pip install -I pyzmq==14.4.1 || echo "FAILED: rc=$? pip pyzmq" >&2
 pip install -I rdflib==4.1.0 || echo "FAILED: rc=$? pip rdflib" >&2
-pip install -I rdflib-jsonld==0.2-dev || echo "FAILED: rc=$? pip rdflib-jsonld" >&2
+pip install -I rdflib-jsonld==0.2 || echo "FAILED: rc=$? pip rdflib-jsonld" >&2
+#  0.2-dev not found pip install -I rdflib-jsonld==0.2-dev || echo "FAILED: rc=$? pip rdflib-jsonld" >&2
 pip install -I restkit==4.2.2 || echo "FAILED: rc=$? pip restkit" >&2
 #pip install -I scipy==0.13.2 || echo "FAILED: rc=$? pip scipy" >&2
 pip install -I setproctitle==1.1.8 || echo "FAILED: rc=$? pip setproctitle" >&2
