@@ -2,14 +2,20 @@
 #
 # load data
 # use -rlt instead of -a to avoid permissions problems
-#  /u/metanet/git/rdfowl-files.git/
-# git clone ssh://sjdayday@mirto1.icsi.berkeley.edu/u/metanet/git/metanet-etc.git/
+# 
+echo "set up mnauto home directories"
+cd /home/mnauto
+mkdir logs
+git clone ssh://sjdayday@mirto1.icsi.berkeley.edu/u/metanet/git/gmr-scripts.git/ bin || echo "FAILED: rc=$? git mnauto bin" >&2
+git clone ssh://sjdayday@mirto1.icsi.berkeley.edu/u/metanet/git/metanetdev.git/ mdev || echo "FAILED: rc=$? git mnauto mdev" >&2
+cd mdev
+ant install || echo "FAILED: rc=$? ant install"
 cd /u/metanet
 mkdir dev
 # dev is a link, so copy its contents
 rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/dev/  /u/metanet/dev || echo "FAILED: rc=$? rsync dev" >&2
-echo "tools"
-rsync -rltqzhe ssh --exclude=virtualenv sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/tools64/ /u/metanet/tools64 || echo "FAILED: rc=$? rsync tools" >&2
+echo "tools, excluding ones we already built or know we don't need"
+rsync -rltqzhe ssh --exclude-from '/home/mnauto/vmbin/exclude-tools64.txt' sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/tools64/ /u/metanet/tools64 || echo "FAILED: rc=$? rsync tools" >&2
 echo "affectRatings"
 rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/affectRatings /u/metanet || echo "FAILED: rc=$? rsync affectRatings" >&2
 echo "clustering"
@@ -51,28 +57,34 @@ cd /u/metanet
 mkdir nlptools
 cd nlptools
 echo "nlptools"
-rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/nlptools/maltparser-1.7.2 /u/metanet/nlptools || echo "FAILED: rc=$? rsync maltparser1.7" >&2
+rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/nlptools/maltparser-1.8 /u/metanet/nlptools || echo "FAILED: rc=$? rsync maltparser1.7" >&2
 rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/nlptools/tree-tagger-3.2 /u/metanet/nlptools || echo "FAILED: rc=$? rsync tree-tagger" >&2
+rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/nlptools/stanford-postagger-full-2014-06-16 /u/metanet/nlptools || echo "FAILED: rc=$? rsync pos-tagger" >&2
 cd /u/metanet/corpolexica/RU
 mkdir parsers
 cd parsers
 mkdir tools
 echo "RU parser"
 rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/corpolexica/RU/parsers/tools/parser /u/metanet/corpolexica/RU/parsers/tools || echo "FAILED: rc=$? rsync RU parser" >&2
+cd /u/metanet/
+mkdir persianCode
+cd persianCode
+mkdir PersianPipeline
+cd PersianPipeline
+echo "Persian models"
+rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/persianCode/PersianPipeline/models /u/metanet/persianCode/PersianPipeline  || echo "FAILED: rc=$? rsync Persian models" >&2
 cd /u/metanet
 mkdir extraction 
-echo "extraction"
-rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/extraction/seeds /u/metanet/extraction || echo "FAILED: rc=$? rsync seeds" >&2
-rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/extraction/cxns /u/metanet/extraction || echo "FAILED: rc=$? rsync cxns" >&2
-rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/extraction/persian /u/metanet/extraction || echo "FAILED: rc=$? rsync persian" >&2
-# was 700M, now 4G
-echo "repository"
-rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/repository /u/metanet || echo "FAILED: rc=$? rsync repository" >&2
-# 10G
+echo "extraction seeds cxns persian"
+cd extraction
+git clone ssh://sjdayday@mirto1.icsi.berkeley.edu/u/metanet/git/seeds.git/ seeds|| echo "FAILED: rc=$? git seeds" >&2
+git clone ssh://sjdayday@mirto1.icsi.berkeley.edu/u/metanet/git/cxns.git/ cxns  || echo "FAILED: rc=$? git cxns" >&2
+mkdir persian
+rsync -rltqzhe --exclude=oldLogs --exclude=logs ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/extraction/persian/lms2 /u/metanet/extraction/persian || echo "FAILED: rc=$? rsync persian lms2" >&2
 cd /u/metanet
 mkdir IARPATesting
 echo "IARPATesting"
-rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/IARPATesting/gold /u/metanet/IARPATesting || echo "FAILED: rc=$? rsync gold" >&2
+rsync -rltqzhe --exclude='iarpa*' --exclude='bak*' ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/IARPATesting/gold /u/metanet/IARPATesting || echo "FAILED: rc=$? rsync gold" >&2
 cd /u/framenet
 mkdir lib
 echo "framenet"
