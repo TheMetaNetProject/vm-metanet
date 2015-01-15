@@ -80,11 +80,11 @@ cd extraction
 git clone ssh://sjdayday@mirto1.icsi.berkeley.edu/u/metanet/git/seeds.git/ seeds|| echo "FAILED: rc=$? git seeds" >&2
 git clone ssh://sjdayday@mirto1.icsi.berkeley.edu/u/metanet/git/cxns.git/ cxns  || echo "FAILED: rc=$? git cxns" >&2
 mkdir persian
-rsync -rltqzhe --exclude=oldLogs --exclude=logs ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/extraction/persian/lms2 /u/metanet/extraction/persian || echo "FAILED: rc=$? rsync persian lms2" >&2
+rsync -rltqzhe ssh --exclude=oldLogs --exclude=logs sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/extraction/persian/lms2 /u/metanet/extraction/persian || echo "FAILED: rc=$? rsync persian lms2" >&2
 cd /u/metanet
 mkdir IARPATesting
 echo "IARPATesting"
-rsync -rltqzhe --exclude='iarpa*' --exclude='bak*' ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/IARPATesting/gold /u/metanet/IARPATesting || echo "FAILED: rc=$? rsync gold" >&2
+rsync -rltqzhe ssh --exclude='iarpa*' --exclude='bak*' sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/IARPATesting/gold /u/metanet/IARPATesting || echo "FAILED: rc=$? rsync gold" >&2
 cd /u/framenet
 mkdir lib
 echo "framenet"
