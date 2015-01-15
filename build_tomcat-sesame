@@ -38,3 +38,6 @@ echo "...to initialize sesame repositories"
 sleep 30
 cd $CATALINA_HOME/bin
 ./shutdown.sh
+cd /u/metanet/repository/rdf
+echo "update load owl script"
+sed -i 's_tools_tools64_' loadowl2triplestore.sh || echo "FAILED: rc=$? update loadowl2triplestore.sh" >&2
