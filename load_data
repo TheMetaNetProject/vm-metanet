@@ -16,8 +16,8 @@ mkdir dev
 rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/dev/  /u/metanet/dev || echo "FAILED: rc=$? rsync dev" >&2
 echo "tools, excluding ones we already built or know we don't need"
 rsync -rltqzhe ssh --exclude-from '/home/mnauto/vmbin/exclude-tools64.txt' sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/tools64/ /u/metanet/tools64 || echo "FAILED: rc=$? rsync tools" >&2
-echo "repository, except rdf"
-rsync -rltqzhe ssh --exclude=rdf sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/repository /u/metanet || echo "FAILED: rc=$? rsync repository" >&2
+echo "repository wiktionary"
+rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/repository/wiktionary /u/metanet/repository || echo "FAILED: rc=$? rsync repository wiktionary" >&2
 echo "affectRatings"
 rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/affectRatings /u/metanet || echo "FAILED: rc=$? rsync affectRatings" >&2
 echo "clustering"
