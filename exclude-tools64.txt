@@ -3,3 +3,4 @@ apache*
 open-rdf*
 freeling*
 Komodo*
+eclipse*
