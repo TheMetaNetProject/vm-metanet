@@ -9,7 +9,8 @@ mkdir logs
 git clone ssh://sjdayday@mirto1.icsi.berkeley.edu/u/metanet/git/gmr-scripts.git/ bin || echo "FAILED: rc=$? git mnauto bin" >&2
 git clone ssh://sjdayday@mirto1.icsi.berkeley.edu/u/metanet/git/metanetdev.git/ mdev || echo "FAILED: rc=$? git mnauto mdev" >&2
 cd mdev
-ant install || echo "FAILED: rc=$? ant install"
+echo $PATH
+/u/metanet/tools64/bin/ant install || echo "FAILED: rc=$? ant install"
 cd /u/metanet
 mkdir dev
 # dev is a link, so copy its contents
