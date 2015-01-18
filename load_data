@@ -19,6 +19,8 @@ echo "tools, excluding ones we already built or know we don't need"
 rsync -rltqzhe ssh --exclude-from '/home/mnauto/vmbin/exclude-tools64.txt' sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/tools64/ /u/metanet/tools64 || echo "FAILED: rc=$? rsync tools" >&2
 echo "repository wiktionary"
 rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/repository/wiktionary /u/metanet/repository || echo "FAILED: rc=$? rsync repository wiktionary" >&2
+echo "repository program"
+rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/repository/program /u/metanet/repository || echo "FAILED: rc=$? rsync repository program" >&2
 echo "affectRatings"
 rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/affectRatings /u/metanet || echo "FAILED: rc=$? rsync affectRatings" >&2
 echo "clustering"
