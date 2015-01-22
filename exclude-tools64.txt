@@ -4,3 +4,4 @@ open-rdf*
 freeling*
 Komodo*
 eclipse*
+src
