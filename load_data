@@ -3,25 +3,37 @@
 # load data
 # use -rlt instead of -a to avoid permissions problems
 # 
-echo "set up mnauto home directories"
+NOWTIME=$(date +"%Y.%m.%d--%H-%M")
+echo "$NOWTIME set up mnauto home directories"
 cd /home/mnauto
 mkdir logs
 git clone ssh://sjdayday@mirto1.icsi.berkeley.edu/u/metanet/git/gmr-scripts.git/ bin || echo "FAILED: rc=$? git mnauto bin" >&2
 git clone ssh://sjdayday@mirto1.icsi.berkeley.edu/u/metanet/git/metanetdev.git/ mdev || echo "FAILED: rc=$? git mnauto mdev" >&2
 cd mdev
-echo $PATH
+echo "$NOWTIME $PATH ant install"
+NOWTIME=$(date +"%Y.%m.%d--%H-%M")
 /u/metanet/tools64/bin/ant install || echo "FAILED: rc=$? ant install"
 cd /u/metanet
 mkdir dev
+mkdir tools
+NOWTIME=$(date +"%Y.%m.%d--%H-%M")
+echo "$NOWTIME rsync dev"
 # dev is a link, so copy its contents
 rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/dev/  /u/metanet/dev || echo "FAILED: rc=$? rsync dev" >&2
-echo "tools, excluding ones we already built or know we don't need"
+NOWTIME=$(date +"%Y.%m.%d--%H-%M")
+echo "$NOWTIME tools rasp3os"
+rsync -rltqzhe ssh  sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/tools/rasp3os  /u/metanet/tools || echo "FAILED: rc=$? rsync tools rasp3os" >&2
+NOWTIME=$(date +"%Y.%m.%d--%H-%M")
+echo "$NOWTIME tools64, excluding ones we already built or know we don't need"
 rsync -rltqzhe ssh --exclude-from '/home/mnauto/vmbin/exclude-tools64.txt' sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/tools64/ /u/metanet/tools64 || echo "FAILED: rc=$? rsync tools" >&2
-echo "repository wiktionary"
+NOWTIME=$(date +"%Y.%m.%d--%H-%M")
+echo "$NOWTIME repository wiktionary"
 rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/repository/wiktionary /u/metanet/repository || echo "FAILED: rc=$? rsync repository wiktionary" >&2
-echo "repository program"
+NOWTIME=$(date +"%Y.%m.%d--%H-%M")
+echo "$NOWTIME repository program"
 rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/repository/program /u/metanet/repository || echo "FAILED: rc=$? rsync repository program" >&2
-echo "affectRatings"
+NOWTIME=$(date +"%Y.%m.%d--%H-%M")
+echo "$NOWTIME affectRatings"
 rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/affectRatings /u/metanet || echo "FAILED: rc=$? rsync affectRatings" >&2
 echo "clustering"
 cd /u/metanet
@@ -29,13 +41,13 @@ mkdir clustering
 cd clustering
 mkdir m4source
 cd m4source
-rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/clustering/m4source/master_dim_list_new.csv /u/metanet/clustering/m4source/ || echo "FAILED: rc=$? rsync list_new" >&2
-rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/clustering/m4source/lexicon_english.txt /u/metanet/clustering/m4source/ || echo "FAILED: rc=$? rsync EN lexicon" >&2
-rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/clustering/m4source/termtermmatrix_english.mat /u/metanet/clustering/m4source/ || echo "FAILED: rc=$? rsync EN matrix" >&2
-rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/clustering/m4source/dictionary_spanish.dict /u/metanet/clustering/m4source/ || echo "FAILED: rc=$? rsync ES dict" >&2
-rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/clustering/m4source/modelspanish.lsi /u/metanet/clustering/m4source/ || echo "FAILED: rc=$? rsync ES model" >&2
-rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/clustering/m4source/dictionary_russian.dict /u/metanet/clustering/m4source/ || echo "FAILED: rc=$? rsync RU dict" >&2
-rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/clustering/m4source/modelrussian.lsi /u/metanet/clustering/m4source/ || echo "FAILED: rc=$? rsync RU model" >&2
+#rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/clustering/m4source/master_dim_list_new.csv /u/metanet/clustering/m4source/ || echo "FAILED: rc=$? rsync list_new" >&2
+#rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/clustering/m4source/lexicon_english.txt /u/metanet/clustering/m4source/ || echo "FAILED: rc=$? rsync EN lexicon" >&2
+#rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/clustering/m4source/termtermmatrix_english.mat /u/metanet/clustering/m4source/ || echo "FAILED: rc=$? rsync EN matrix" >&2
+#rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/clustering/m4source/dictionary_spanish.dict /u/metanet/clustering/m4source/ || echo "FAILED: rc=$? rsync ES dict" >&2
+#rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/clustering/m4source/modelspanish.lsi /u/metanet/clustering/m4source/ || echo "FAILED: rc=$? rsync ES model" >&2
+#rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/clustering/m4source/dictionary_russian.dict /u/metanet/clustering/m4source/ || echo "FAILED: rc=$? rsync RU dict" >&2
+#rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/clustering/m4source/modelrussian.lsi /u/metanet/clustering/m4source/ || echo "FAILED: rc=$? rsync RU model" >&2
 cd /u/metanet
 mkdir corpolexica
 cd corpolexica
@@ -43,29 +55,34 @@ mkdir EN
 mkdir ES
 mkdir RU
 mkdir FA
-echo "EN bnc"
+NOWTIME=$(date +"%Y.%m.%d--%H-%M")
+echo "$NOWTIME EN bnc"
 rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/corpolexica/EN/bnc /u/metanet/corpolexica/EN || echo "FAILED: rc=$? rsync EN bnc" >&2
 cd /u/metanet/corpolexica/ES
 mkdir freeling
-echo "ES relationsDB"
+NOWTIME=$(date +"%Y.%m.%d--%H-%M")
+echo "$NOWTIME ES relationsDB"
 rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/corpolexica/ES/freeling/relations.db /u/metanet/corpolexica/ES/freeling || echo "FAILED: rc=$? rsync ES relationsDB" >&2
 cd /u/metanet/corpolexica/RU
 mkdir malt
 mkdir RU-WAC
-/u/metanet/corpolexica/RU/RU-WAC/Russian Metaphor Extraction
-echo "RU relationsDB"
+NOWTIME=$(date +"%Y.%m.%d--%H-%M")
+echo "$NOWTIME RU relationsDB"
 rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/corpolexica/RU/malt/relations.db /u/metanet/corpolexica/RU/malt || echo "FAILED: rc=$? rsync RU relationsDB" >&2
-echo "Russian metaphor extraction"
+NOWTIME=$(date +"%Y.%m.%d--%H-%M")
+echo "$NOWTIME Russian metaphor extraction"
 rsync -rsltqzhe ssh 'sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/corpolexica/RU/RU-WAC/Russian Metaphor Extraction' /u/metanet/corpolexica/RU/RU-WAC || echo "FAILED: rc=$? rsync Russian metaphor extraction" >&2
 rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/AssignMappings /u/metanet || echo "FAILED: rc=$? rsync assign mappings" >&2
-echo "corpolexica m4mappings"
+NOWTIME=$(date +"%Y.%m.%d--%H-%M")
+echo "$NOWTIME corpolexica m4mappings"
 rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/corpolexica/EN/m4mapping /u/metanet/corpolexica/EN || echo "FAILED: rc=$? rsync EN m4mapping" >&2
 rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/corpolexica/ES/m4mapping /u/metanet/corpolexica/ES || echo "FAILED: rc=$? rsync ES m4mapping" >&2
 rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/corpolexica/RU/m4mapping /u/metanet/corpolexica/RU || echo "FAILED: rc=$? rsync RU m4mapping" >&2
 cd /u/metanet
 mkdir nlptools
 cd nlptools
-echo "nlptools"
+NOWTIME=$(date +"%Y.%m.%d--%H-%M")
+echo "$NOWTIME nlptools"
 rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/nlptools/maltparser-1.8 /u/metanet/nlptools || echo "FAILED: rc=$? rsync maltparser1.7" >&2
 rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/nlptools/tree-tagger-3.2 /u/metanet/nlptools || echo "FAILED: rc=$? rsync tree-tagger" >&2
 rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/nlptools/stanford-postagger-full-2014-06-16 /u/metanet/nlptools || echo "FAILED: rc=$? rsync pos-tagger" >&2
@@ -73,29 +90,35 @@ cd /u/metanet/corpolexica/RU
 mkdir parsers
 cd parsers
 mkdir tools
-echo "RU parser"
+NOWTIME=$(date +"%Y.%m.%d--%H-%M")
+echo "$NOWTIME RU parser"
 rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/corpolexica/RU/parsers/tools/parser /u/metanet/corpolexica/RU/parsers/tools || echo "FAILED: rc=$? rsync RU parser" >&2
 cd /u/metanet/
 mkdir persianCode
 cd persianCode
 mkdir PersianPipeline
 cd PersianPipeline
-echo "Persian models"
+NOWTIME=$(date +"%Y.%m.%d--%H-%M")
+echo "$NOWTIME Persian models"
 rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/persianCode/PersianPipeline/models /u/metanet/persianCode/PersianPipeline  || echo "FAILED: rc=$? rsync Persian models" >&2
 cd /u/metanet
 mkdir extraction 
-echo "extraction seeds cxns persian"
+NOWTIME=$(date +"%Y.%m.%d--%H-%M")
+echo "$NOWTIME extraction seeds cxns persian"
 cd extraction
 git clone ssh://sjdayday@mirto1.icsi.berkeley.edu/u/metanet/git/seeds.git/ seeds|| echo "FAILED: rc=$? git seeds" >&2
 git clone ssh://sjdayday@mirto1.icsi.berkeley.edu/u/metanet/git/cxns.git/ cxns  || echo "FAILED: rc=$? git cxns" >&2
 rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/extraction/persian /u/metanet/extraction || echo "FAILED: rc=$? rsync persian" >&2
 cd /u/metanet
 mkdir IARPATesting
-echo "IARPATesting"
+NOWTIME=$(date +"%Y.%m.%d--%H-%M")
+echo "$NOWTIME IARPATesting"
 rsync -rltqzhe ssh --exclude='iarpa*' --exclude='bak*' sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/IARPATesting/gold /u/metanet/IARPATesting || echo "FAILED: rc=$? rsync gold" >&2
 cd /u/framenet
 mkdir lib
-echo "framenet"
+NOWTIME=$(date +"%Y.%m.%d--%H-%M")
+echo "$NOWTIME framenet"
 rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/framenet/lib/nltk_data /u/framenet/lib || echo "FAILED: rc=$? rsync nltk_data" >&2
-echo "data loaded"
+NOWTIME=$(date +"%Y.%m.%d--%H-%M")
+echo "$NOWTIME data loaded"
 exit 0
