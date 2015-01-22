@@ -83,7 +83,8 @@ mkdir nlptools
 cd nlptools
 NOWTIME=$(date +"%Y.%m.%d--%H-%M")
 echo "$NOWTIME nlptools"
-rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/nlptools/maltparser-1.8 /u/metanet/nlptools || echo "FAILED: rc=$? rsync maltparser1.7" >&2
+rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/nlptools/maltparser-1.8 /u/metanet/nlptools || echo "FAILED: rc=$? rsync maltparser1.8" >&2
+rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/nlptools/maltparser-1.7.2 /u/metanet/nlptools || echo "FAILED: rc=$? rsync maltparser1.7.2" >&2
 rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/nlptools/tree-tagger-3.2 /u/metanet/nlptools || echo "FAILED: rc=$? rsync tree-tagger" >&2
 rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/nlptools/stanford-postagger-full-2014-06-16 /u/metanet/nlptools || echo "FAILED: rc=$? rsync pos-tagger" >&2
 cd /u/metanet/corpolexica/RU
