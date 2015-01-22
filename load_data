@@ -51,8 +51,12 @@ echo "ES relationsDB"
 rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/corpolexica/ES/freeling/relations.db /u/metanet/corpolexica/ES/freeling || echo "FAILED: rc=$? rsync ES relationsDB" >&2
 cd /u/metanet/corpolexica/RU
 mkdir malt
+mkdir RU-WAC
+/u/metanet/corpolexica/RU/RU-WAC/Russian Metaphor Extraction
 echo "RU relationsDB"
 rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/corpolexica/RU/malt/relations.db /u/metanet/corpolexica/RU/malt || echo "FAILED: rc=$? rsync RU relationsDB" >&2
+echo "Russian metaphor extraction"
+rsync -rsltqzhe ssh 'sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/corpolexica/RU/RU-WAC/Russian Metaphor Extraction' /u/metanet/corpolexica/RU/RU-WAC || echo "FAILED: rc=$? rsync Russian metaphor extraction" >&2
 rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/AssignMappings /u/metanet || echo "FAILED: rc=$? rsync assign mappings" >&2
 echo "corpolexica m4mappings"
 rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/corpolexica/EN/m4mapping /u/metanet/corpolexica/EN || echo "FAILED: rc=$? rsync EN m4mapping" >&2
