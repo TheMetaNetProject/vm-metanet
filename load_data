@@ -26,6 +26,8 @@ rsync -rltqzhe ssh  sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/tools/rasp3os  
 NOWTIME=$(date +"%Y.%m.%d--%H-%M")
 echo "$NOWTIME tools64, excluding ones we already built or know we don't need"
 rsync -rltqzhe ssh --exclude-from '/home/mnauto/vmbin/exclude-tools64.txt' sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/tools64/ /u/metanet/tools64 || echo "FAILED: rc=$? rsync tools" >&2
+cd /u/metanet/tools
+rsync -rltqzhe ssh  sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/tools/etc /u/metanet/tools || echo "FAILED: rc=$? rsync tools etc" >&2
 NOWTIME=$(date +"%Y.%m.%d--%H-%M")
 echo "$NOWTIME repository wiktionary"
 rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/repository/wiktionary /u/metanet/repository || echo "FAILED: rc=$? rsync repository wiktionary" >&2
