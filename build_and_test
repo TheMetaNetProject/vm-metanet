@@ -12,6 +12,7 @@ sed -i 's_/n/picnic/xw/metanet_/u/metanet_' metanet.bashrc
 sed -i 's/oracle.x86_64/openjdk.x86_64/' metanet.bashrc
 /usr/bin/printf "\nexport HOST=\$(hostname | cut -f1 -d.)\nif [ -f /u/metanet/etc/metanet.bashrc ] ; then\n source /u/metanet/etc/metanet.bashrc\nfi\n" >> /home/mnauto/.bashrc
 source ~/.bashrc
+env
 #
 # directories for logging and test
 NOW=$(date +"%Y-%m-%d--%H-%M")
