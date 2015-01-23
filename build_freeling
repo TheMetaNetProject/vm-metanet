@@ -16,11 +16,14 @@ cd /u/metanet/tools/src/freeling-3.1/
 export TEMPLDFLAGS=${LDFLAGS}
 unset LDFLAGS
 env
-./configure --prefix=/u/metanet/tools/freeling-3.1 || echo "FAILED: rc=$? feeling configure" >&2
+./configure --prefix=/u/metanet/tools/freeling-3.1 || echo "FAILED: rc=$? freeling configure" >&2
 make || echo "FAILED: rc=$? freeling make" >&2
 make install || echo "FAILED: rc=$? freeling make install" >&2
 export LDFLAGS=${TEMPLDFLAGS}
 unset TEMPLDFLAGS
 cd /u/metanet/tools64
 ln -s ../tools/freeling-3.1 freeling-3.1
+cd /u/metanet/tools/freeling-3.1/share/freeling/config
+scp sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/tools/freeling-3.1/share/freeling/config/dep.es.cfg .  || echo "FAILED: rc=$? scp dep.es.cfg " >&2
+scp sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/tools/freeling-3.1/share/freeling/config/tag.es.cfg .  || echo "FAILED: rc=$? scp tag.es.cfg " >&2
 echo "$NOWTIME freeling complete"
