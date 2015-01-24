@@ -9,11 +9,3 @@ diffjson.sh mapping EN $1
 diffjson.sh mapping ES $1
 diffjson.sh mapping RU $1
 diffjson.sh mapping FA $1
-diffjson.sh source EN $1
-diffjson.sh source ES $1
-diffjson.sh source RU $1
-diffjson.sh source FA $1
-diffjson.sh affect EN $1
-diffjson.sh affect ES $1
-diffjson.sh affect RU $1
-diffjson.sh affect FA $1
