@@ -10,7 +10,7 @@ git clone ssh://sjdayday@mirto1.icsi.berkeley.edu/u/metanet/git/metanet-etc.git/
 cd /u/metanet/etc
 sed -i 's_/n/picnic/xw/metanet_/u/metanet_' metanet.bashrc
 sed -i 's/oracle.x86_64/openjdk.x86_64/' metanet.bashrc
-/usr/bin/printf "\nexport HOST=\$(hostname | cut -f1 -d.)\nif [ -f /u/metanet/etc/metanet.bashrc ] ; then\n source /u/metanet/etc/metanet.bashrc\nfi\n" >> /home/mnauto/.bashrc
+/usr/bin/printf "\nexport HOST=\$(hostname | cut -f1 -d.)\nexport PATH=$HOME/bin:$HOME/vmbin:$PATH\nif [ -f /u/metanet/etc/metanet.bashrc ] ; then\n source /u/metanet/etc/metanet.bashrc\nfi\n" >> /home/mnauto/.bashrc
 source ~/.bashrc
 env
 #
