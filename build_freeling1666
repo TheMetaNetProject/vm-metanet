@@ -3,7 +3,7 @@
 # install freeling
 cd /u/metanet/tools
 mkdir freeling-1666
-#rsync -avzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/tools/src/freeling-1666 /u/metanet/tools/src  ||  echo "FAILED: rc=$? freeling rsync" >&2
+rsync -avzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/tools/src/freeling-1666 /u/metanet/tools/src  ||  echo "FAILED: rc=$? freeling rsync" >&2
 cd /u/metanet/tools/src/freeling-1666/
 export TEMPLDFLAGS=${LDFLAGS}
 export TEMPPATH=${PATH}
@@ -20,3 +20,23 @@ export LDFLAGS=${TEMPLDFLAGS}
 export PATH=${TEMPPATH}
 unset TEMPLDFLAGS
 unset TEMPPATH
+# we don't have a working freeling-3.1 install, so link to freeling-1666
+# for use in metanet.bashrc
+cd /u/metanet/tools64
+ln -s ../tools/freeling-1666 freeling-3.1
+# depparsing/util.py looks for /u/metanet/tools/freeling-3.1/bin/analyzer
+cd /u/metanet/tools
+ln -s freeling-1666 freeling-3.1
+# ... it also looks for /u/metanet/tools/etc/dep.es.cfg; use the one for 1666
+cd /u/metanet/tools/etc
+ln -s dep.cfg dep.es.cfg
+# dep.cfg references ICSI-specific files in $FREELINGSHARE/es
+cd /u/metanet/tools/freeling-1666/share/freeling/es
+scp sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/tools/share/freeling/es/splitter2.dat .  || echo "FAILED: rc=$? scp splitter2.dat " >&2
+scp sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/tools/share/freeling/es/grammar-dep.dat .  || echo "FAILED: rc=$? scp grammar-dep.dat " >&2
+scp sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/tools/share/freeling/es/constr_gram.dat .  || echo "FAILED: rc=$? scp constr_gram.dat " >&2
+scp sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/tools/share/freeling/es/grammar.lemastemp .  || echo "FAILED: rc=$? scp grammar.lemastemp " >&2
+scp sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/tools/share/freeling/es/grammar-full.dat .  || echo "FAILED: rc=$? scp grammar-full.dat " >&2
+scp sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/tools/share/freeling/es/grammar.dat .  || echo "FAILED: rc=$? scp grammar.dat " >&2
+echo "$NOWTIME freeling complete"
+
