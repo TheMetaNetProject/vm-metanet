@@ -12,6 +12,9 @@ git clone ssh://sjdayday@mirto1.icsi.berkeley.edu/u/metanet/git/metanetdev.git/ 
 cd mdev
 echo "$NOWTIME $PATH ant install"
 NOWTIME=$(date +"%Y.%m.%d--%H-%M")
+# some problem running ant; may have to be done manually later
+echo `which ant`
+pwd
 /u/metanet/tools64/bin/ant install || echo "FAILED: rc=$? ant install"
 cd /u/metanet
 mkdir dev
