@@ -29,6 +29,7 @@ cd /u/metanet/tools
 ln -s freeling-1666 freeling-3.1
 # ... it also looks for /u/metanet/tools/etc/dep.es.cfg; use the one for 1666
 cd /u/metanet/tools/etc
+rm dep.es.cfg
 ln -s dep.cfg dep.es.cfg
 # dep.cfg references ICSI-specific files in $FREELINGSHARE/es
 cd /u/metanet/tools/freeling-1666/share/freeling/es
