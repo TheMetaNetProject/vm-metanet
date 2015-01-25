@@ -18,7 +18,6 @@ pwd
 /u/metanet/tools64/bin/ant install || echo "FAILED: rc=$? ant install"
 cd /u/metanet
 mkdir dev
-mkdir tools
 NOWTIME=$(date +"%Y.%m.%d--%H-%M")
 echo "$NOWTIME rsync dev"
 # dev is a link, so copy its contents
