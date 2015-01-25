@@ -62,3 +62,13 @@ pip install -I peewee || echo "FAILED: rc=$? pip peewee" >&2
 #git clone https://github.com/coleifer/peewee.git
 #cd peewee
 #python setup.py install
+# 
+# SPARQLWrapper has a bug; manually update two lines that differ 
+# between the distribution (apparently both 1.6.0 and 1.6.4)
+# and what is running for ICSI
+# Error is that Wrapper.py query method doesn't specify UTF-8
+cd /u/metanet/tools64/virtualenv/2.7.3/lib/python2.7/site-packages/SPARQLWrapper
+sed -i 's_JSONLD and JSONLD_JSONLD and JSONLS_' Wrapper.py
+sed -i 's_application/x-www-form-urlencoded_application/x-www-form-urlencoded; charset=utf-8_' Wrapper.py
+#wget --no-check-certificate https://pypi.python.org/packages/2.7/S/SPARQLWrapper/SPARQLWrapper-1.6.0-py2.7.egg || echo "FAILED: rc=$? wget sparqlwrapper"
+#easy_install SPARQLWrapper-1.6.0-py2.7.egg || echo "FAILED: rc=$? easy install sparqlwrapper"
