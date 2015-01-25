@@ -40,8 +40,9 @@ build_python_packages
 # install scipy (needs BLAS, lapack and numpy)
 build_scipy
 #
-# install freeling
-build_freeling
+# install freeling; workaround local mods by installing 1666 instead of 3.1
+#build_freeling
+build_freeling1666
 #
 # install ant
 build_ant
