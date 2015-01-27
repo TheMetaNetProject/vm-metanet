@@ -1,0 +1,5 @@
+Log*
+Result*
+*affect.xml
+*source.xml
+*affect_fixed.xml
