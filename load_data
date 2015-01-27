@@ -122,6 +122,9 @@ mkdir IARPATesting
 NOWTIME=$(date +"%Y.%m.%d--%H-%M")
 echo "$NOWTIME IARPATesting"
 rsync -rltqzhe ssh --exclude='iarpa*' --exclude='bak*' sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/IARPATesting/gold /u/metanet/IARPATesting || echo "FAILED: rc=$? rsync gold" >&2
+cd /u/metanet/IARPATesting
+mkdir xml
+rsync -rltqzhe ssh --exclude-from '/home/mnauto/vmbin/exclude-xml.txt' sjdayday@mirto1.icsi.berkeley.edu:/n/picnic/xw/metanet/testing/IARPATesting/novxml_sa/*.xml /u/metanet/IARPATesting/xml  || echo "FAILED: rc=$? rsync test xml" >&2
 cd /u/framenet
 mkdir lib
 NOWTIME=$(date +"%Y.%m.%d--%H-%M")
