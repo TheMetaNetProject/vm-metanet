@@ -42,19 +42,6 @@ rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/repository/progr
 NOWTIME=$(date +"%Y.%m.%d--%H-%M")
 echo "$NOWTIME affectRatings"
 rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/affectRatings /u/metanet || echo "FAILED: rc=$? rsync affectRatings" >&2
-echo "clustering"
-cd /u/metanet
-mkdir clustering
-cd clustering
-mkdir m4source
-cd m4source
-#rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/clustering/m4source/master_dim_list_new.csv /u/metanet/clustering/m4source/ || echo "FAILED: rc=$? rsync list_new" >&2
-#rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/clustering/m4source/lexicon_english.txt /u/metanet/clustering/m4source/ || echo "FAILED: rc=$? rsync EN lexicon" >&2
-#rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/clustering/m4source/termtermmatrix_english.mat /u/metanet/clustering/m4source/ || echo "FAILED: rc=$? rsync EN matrix" >&2
-#rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/clustering/m4source/dictionary_spanish.dict /u/metanet/clustering/m4source/ || echo "FAILED: rc=$? rsync ES dict" >&2
-#rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/clustering/m4source/modelspanish.lsi /u/metanet/clustering/m4source/ || echo "FAILED: rc=$? rsync ES model" >&2
-#rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/clustering/m4source/dictionary_russian.dict /u/metanet/clustering/m4source/ || echo "FAILED: rc=$? rsync RU dict" >&2
-#rsync -rltqzhe ssh sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/clustering/m4source/modelrussian.lsi /u/metanet/clustering/m4source/ || echo "FAILED: rc=$? rsync RU model" >&2
 cd /u/metanet
 mkdir corpolexica
 cd corpolexica
@@ -124,8 +111,7 @@ echo "$NOWTIME IARPATesting"
 rsync -rltqzhe ssh --exclude='iarpa*' --exclude='bak*' sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/IARPATesting/gold /u/metanet/IARPATesting || echo "FAILED: rc=$? rsync gold" >&2
 cd /u/metanet/IARPATesting
 mkdir xml
-rsync -rltqzhe ssh --exclude-from '/home/mnauto/vmbin/exclude-xml.txt' sjdayday@mirto1.icsi.berkeley.edu:/n/picnic/xw/metanet/testing/IARPATesting/novxml_sa/*.xml /u/metanet/IARPATesting/xml  || echo "FAILED: rc=$? rsync test xml" >&2
-scp sjdayday@mirto1.icsi.berkeley.edu:/n/picnic/xw/metanet/testing/IARPATesting/novxml_sa/*Xml.sh /u/metanet/IARPATesting/xml/  || echo "FAILED: rc=$? scp *Xml.sh" >&2
+rsync -rltqzhe ssh  sjdayday@mirto1.icsi.berkeley.edu:/u/metanet/IARPATesting/2014dec /u/metanet/IARPATesting/xml  || echo "FAILED: rc=$? rsync test xml" >&2
 cd /u/framenet
 mkdir lib
 NOWTIME=$(date +"%Y.%m.%d--%H-%M")
