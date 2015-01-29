@@ -1,0 +1,12 @@
+#!/bin/bash
+# freeze VM prior to delivery to IARPA
+# Steve Doubleday
+# 
+# remove git repositories
+rm -rf /home/mnauto/vmbin/.git 
+rm -rf /home/mnauto/bin/.git 
+rm -rf /home/mnauto/mdev/.git 
+rm -rf /u/metanet/etc/.git 
+rm -rf /u/metanet/extraction/seeds/.git 
+rm -rf /u/metanet/extraction/cxns/.git 
+rm -rf /u/metanet/repository/rdf/.git 
